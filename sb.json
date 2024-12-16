@@ -1,6 +1,6 @@
 {
   "log": {
-    "level": "debug",
+    "level": "warn",
     "timestamp": true
   },
   "experimental": {
@@ -44,28 +44,11 @@
         "server": "localDns"
       },
       {
-        "rule_set": "geosite-category-ads-all",
-        "server": "block"
-      },
-      {
-        "outbound": "any",
-        "server": "localDns",
-        "disable_cache": true
-      },
-      {
-        "rule_set": "geosite-cn",
-        "server": "localDns"
-      },
-      {
         "clash_mode": "direct",
         "server": "localDns"
       },
       {
-        "clash_mode": "global",
-        "server": "proxyDns"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
+        "clash_mode": "proxy",
         "server": "proxyDns"
       }
     ],
@@ -103,19 +86,28 @@
       "tag": "proxy",
       "type": "selector",
       "outbounds": [
-        "auto",
+        "国外(自动选择)",
         "direct",
-        "Baiduproxy",
         "香港1",
         "香港2",
         "澳大利亚01",
         "日本01",
         "以色列01",
-        "新加坡01"
+        "新加坡01",
+        "CF1",
+        "CF2",
+        "CF3",
+        "CF4",
+        "CF5",
+        "CF6",
+        "CF7",
+        "CF8",
+        "CF-PYY"
       ]
     },
+        #"detour": "百度直连",
     {
-      "tag": "Baiduproxy",
+      "tag": "百度直连",
       "type": "selector",
       "outbounds": [
         "百度｜南京联通",
@@ -127,22 +119,28 @@
       ]
     },
     {
-      "tag": "Global",
-      "type": "selector",
+      "tag": "国外(自动选择)",
+      "type": "urltest",
       "outbounds": [
-        "proxy",
-        "direct",
+        "香港1",
+        "香港2",
+        "澳大利亚01",
+        "日本01",
+        "以色列01",
+        "新加坡01",
+        "CF1",
+        "CF2",
+        "CF3",
+        "CF4",
+        "CF5",
+        "CF6",
+        "CF7",
+        "CF8",
+        "CF-PYY"         
       ],
-      "default": "proxy"
-    },
-    {
-      "tag": "China",
-      "type": "selector",
-      "outbounds": [
-        "Baiduproxy",
-        "direct",
-        "proxy"
-      ]
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "tag": "百度｜南京联通",
@@ -217,21 +215,6 @@
       }
     },
     {
-      "tag": "auto",
-      "type": "urltest",
-      "outbounds": [
-        "香港1",
-        "香港2",
-        "澳大利亚01",
-        "日本01",
-        "以色列01",
-        "新加坡01"
-      ],
-      "url": "http://www.gstatic.com/generate_204",
-      "interval": "10m",
-      "tolerance": 50
-    },
-    {
       "type": "direct",
       "tag": "direct"
     },
@@ -249,7 +232,8 @@
     "server": "911.xn--fhqu06a8m1asto.icu",
     "server_port": 10482,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
     {
       "tag": "香港2",
@@ -257,7 +241,8 @@
     "server": "119.xn--fhqu06a8m1asto.icu",
     "server_port": 10342,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
     {
       "tag": "澳大利亚01",
@@ -265,7 +250,8 @@
     "server": "911.xn--fhqu06a8m1asto.icu",
     "server_port": 10483,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
     {
       "tag": "日本01",
@@ -273,7 +259,8 @@
     "server": "911.xn--fhqu06a8m1asto.icu",
     "server_port": 10484,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
     {
       "tag": "以色列01",
@@ -281,7 +268,8 @@
     "server": "913.xn--fhqu06a8m1asto.icu",
     "server_port": 10410,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
     {
       "tag": "新加坡01",
@@ -289,13 +277,235 @@
     "server": "912.xn--fhqu06a8m1asto.icu",
     "server_port": 10289,
     "method": "chacha20-ietf-poly1305",
-    "password": "d44aeb70-8f01-43e7-b963-3575048d185f"
+    "password": "d44aeb70-8f01-43e7-b963-3575048d185f",
+    "detour": "百度直连"
   },
+    {
+      "tag":"CF1",
+      "type":"vless",
+      "server":"104.16.211.160",
+      "server_port":2096,
+      "uuid":"59bd4d9e-e5c1-4618-b95a-c13598821b8a",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"sm.hk1688.us.kg"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "sm.hk1688.us.kg",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+       {
+      "tag":"CF2",
+      "type":"vless",
+      "server":"173.245.58.184",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF3",
+      "type":"vless",
+      "server":"108.162.196.209",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+       {
+      "tag":"CF4",
+      "type":"vless",
+      "server":"172.67.46.28",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF5",
+      "type":"vless",
+      "server":"104.22.17.244",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF6",
+      "type":"vless",
+      "server":"104.18.113.24",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF7",
+      "type":"vless",
+      "server":"104.16.218.29",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF8",
+      "type":"vless",
+      "server":"162.159.136.214",
+      "server_port":2096,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    },
+    {
+      "tag":"CF-PYY",
+      "type":"vless",
+      "server":"ct.090227.xyz",
+      "server_port":443,
+      "uuid":"910e782d-0fe5-4b53-aee1-2002222102ff",
+      "transport": {
+          "path":"/?ed=2560",
+          "type":"ws",
+          "headers": {
+          "Host":"org.subikun.nyc.mn"
+        }
+      },
+       "tls": {
+          "enabled":true,
+          "server_name":       "org.subikun.nyc.mn",
+          "insecure":true
+        },
+          "tcp_fast_open":false,
+      "detour": "百度直连"
+    }
   ],
   "route": {
-    "auto_detect_interface": true,
-    "final": "proxy",
+        "rule_set": [
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-apple",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "download_detour": "direct"
+      }
+    ],
     "rules": [
+      {
+        "domain_keyword": "meituan",
+        "outbound": "百度直连"
+      },
       {
         "protocol": "dns",
         "outbound": "dns-out"
@@ -310,10 +520,6 @@
         "outbound": "direct"
       },
       {
-        "clash_mode": "global",
-        "outbound": "proxy"
-      },
-      {
         "domain": [
           "clash.razord.top",
           "yacd.metacubex.one",
@@ -323,115 +529,28 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Global"
-      },
-      {
-        "rule_set": "geosite-private",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": "geosite-github",
-        "outbound": "Google"
-      },
-      {
         "ip_is_private": true,
         "outbound": "direct"
       },
       {
         "rule_set": "geoip-cn",
-        "outbound": "China"
+        "outbound": "百度直连"
       },
       {
         "rule_set": "geosite-cn",
-        "outbound": "China"
+        "outbound": "百度直连"
+      },
+      {
+        "rule_set": "geosite-apple",
+        "outbound": "百度直连"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "proxy"
       }
     ],
-    "rule_set": [
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-private",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-youtube",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-instagram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/instagram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-amazon",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/amazon.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-hbo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/hbo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-primevideo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/primevideo.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-ads-all",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "direct"
-      }
-    ]
+    "auto_detect_interface": true,
+    "final": "proxy"
+    #"detour": {"百度直连"}
   }
 }
